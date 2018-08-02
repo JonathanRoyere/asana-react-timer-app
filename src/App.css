@@ -1,0 +1,15 @@
+
+.task-wrap {
+  padding: 2rem;
+}
+.task-wrap .task-wrapper {
+  list-style-type: none;
+  display: block;
+  border: 1px solid #dadada;
+  padding: 1.2rem;
+  margin: 1rem 0;
+}
+
+.timer-cont {
+  border: 0;
+}
