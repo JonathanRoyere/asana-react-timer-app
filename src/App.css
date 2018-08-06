@@ -13,3 +13,8 @@
 .timer-cont {
   border: 0;
 }
+
+
+.stopwatch  a {
+  margin-right: 1rem;
+}
