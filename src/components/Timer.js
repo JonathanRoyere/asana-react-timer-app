@@ -34,16 +34,50 @@ class Timer extends React.Component {
       this.incrementer = null;
     }
 
+    // handleStartClick() {
+    //   // add a set timeout because of many click initialy
+    //   if(this.state.timerRunning == false) {
+    //
+    //     // update timer bool to prevend multiple init
+    //     this.setState({
+    //         timerRunning: true
+    //       })
+    //
+    //
+    //
+    //   this.incrementer = setInterval( () =>
+    //     this.setState({
+    //         secondsElapsed: this.state.secondsElapsed + 1
+    //       })
+    //     , 1000);
+    //   }
+    // }
+
+
     handleStartClick() {
+      // add a set timeout because of many click initialy
       if(this.state.timerRunning == false) {
-      this.incrementer = setInterval( () =>
+
+        // update timer bool to prevend multiple init
         this.setState({
-            secondsElapsed: this.state.secondsElapsed + 1,
             timerRunning: true
           })
-        , 1000);
-      }
+
+
+          // set timeout to trigger after bool , bind this -> setTimeout -> setInterval to change the state correctly
+        setTimeout(function() {
+          this.incrementer = setInterval( function() {
+            this.setState({
+              secondsElapsed: this.state.secondsElapsed + 1
+            })
+          }.bind(this)
+          , 1000);
+        }
+        .bind(this), 10)
+
     }
+  }
+
 
     handleStopClick() {
       clearInterval(this.incrementer);
@@ -64,6 +98,13 @@ class Timer extends React.Component {
 
     submitTimer() {
     // clears convert time to x.xx format then submit to the jarvis api function (see addon)
+    let time = formattedSeconds(this.state.secondsElapsed).split(':');
+
+    let hours = parseFloat( time[0] );
+    let minutes = (parseFloat( time[1]) * 0.0166667)
+    let formatedTime = (hours + minutes).toFixed(2); // trim decimal
+        console.log( hours , minutes , formatedTime );
+    // step on onclick make submit button log time
     }
 
 

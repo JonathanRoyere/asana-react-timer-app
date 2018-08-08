@@ -5,6 +5,8 @@ import Tasks from './components/Tasks'
 import './App.css';
 import './fontawesome/css/all.css';
 
+// name? orlog
+
 class App extends Component {
   render() {
 
